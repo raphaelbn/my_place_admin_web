@@ -1,10 +1,45 @@
 <template>
-  <div class="login">
-    <input type="text" v-model="email" placeholder="Email" /><br />
-    <input type="password" v-model="password" placeholder="Password" /><br />
-    <button @click="login">Sign In</button>
-    <p>You don't have an account ? You can <router-link to="/sign-up">create one</router-link></p>
-  </div>
+  <section class="section">
+    <div class="columns is-centered">
+      <div class="column is-3">
+        <div class="container" @keyup.enter.prevent="login">
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <input class="input" v-model="email" type="email" placeholder="Email" />
+              <span class="icon is-small is-left">
+                <vue-fontawesome
+                  :icon="['far', 'envelope']"
+                />
+              </span>
+              <span class="icon is-small is-right">
+                <vue-fontawesome
+                  :icon="['fas', 'check']"
+                />
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left">
+              <input class="input" v-model="password" type="password" placeholder="Password" />
+              <span class="icon is-small is-left">
+                <vue-fontawesome
+                  :icon="['fas', 'lock']"
+                />
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control">
+              <button @click="login" class="button is-success">
+                Login
+              </button>
+            </p>
+          </div>
+          <p>You don't have an account ? You can <router-link to="/sign-up">create one</router-link></p>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -15,7 +50,7 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
     };
   },
   methods: {
@@ -27,36 +62,14 @@ export default {
           () => {
             this.$router.replace("home");
           },
-          err => {
+          (err) => {
             alert("Oops. " + err.message);
           }
         );
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-/* "scoped" attribute limit the CSS to this component only */
-.login {
-  margin-top: 40px;
-}
-input {
-  margin: 10px 0;
-  width: 20%;
-  padding: 15px;
-}
-button {
-  margin-top: 20px;
-  width: 10%;
-  cursor: pointer;
-}
-p {
-  margin-top: 40px;
-  font-size: 13px;
-}
-p a {
-  text-decoration: underline;
-  cursor: pointer;
-}
 </style>

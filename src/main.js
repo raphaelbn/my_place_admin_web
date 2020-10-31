@@ -3,6 +3,13 @@ import App from "./App.vue";
 import firebase from "firebase";
 import router from "./router";
 import store from "./store";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { IconListSelected } from "./utils/icons";
+import './../node_modules/bulma/css/bulma.css';
+
+
+library.add(IconListSelected);
 
 const firebaseConfig = {
   apiKey: "AIzaSyAb1wdhDzgGAh19CwTmKXDBbJR-VwDJqYs",
@@ -21,4 +28,5 @@ firebase.analytics();
 createApp(App)
   .use(store)
   .use(router)
+  .component("vue-fontawesome", FontAwesomeIcon)
   .mount("#app");
