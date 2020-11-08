@@ -4,7 +4,7 @@ import Login from "../views/Login.vue";
 const routes = [
   {
     path: "/:catchAll(.*)",
-    component: Login,
+    component: Login
   },
   {
     path: "/:/login",
@@ -17,8 +17,16 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (home.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue")
+  },
+  {
+    path: "/category",
+    name: "category",
+    // route level code-splitting
+    // this generates a separate chunk (category.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "home" */ "../views/Home.vue")
+      import(/* webpackChunkName: "category" */ "../views/Categories.vue")
   },
   {
     path: "/sign-up",

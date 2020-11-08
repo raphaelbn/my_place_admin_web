@@ -1,55 +1,80 @@
 <template>
-  <div class="sign-up">
-    <p>Let's create a new account !</p>
-    <input type="text" v-model="email" placeholder="Email"><br>
-    <input type="password" v-model="password" placeholder="Password"><br>
-    <button @click="signUp">Sign Up</button>
-    <span>or go back to <router-link to="/login">login</router-link>.</span>
-  </div>
+  <section class="section">
+    <div class="columns is-centered">
+      <div class="column is-3">
+        <div class="container" @keyup.enter.prevent="signUp">
+          <div class="field">
+            <p>Let's create a new account !</p>
+            <p class="control has-icons-left has-icons-right">
+              <input
+                class="input"
+                v-model="email"
+                type="email"
+                placeholder="Email"
+              />
+              <span class="icon is-small is-left">
+                <vue-fontawesome :icon="['far', 'envelope']" />
+              </span>
+              <span class="icon is-small is-right">
+                <vue-fontawesome :icon="['fas', 'check']" />
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left">
+              <input
+                class="input"
+                v-model="password"
+                type="password"
+                placeholder="Password"
+              />
+              <span class="icon is-small is-left">
+                <vue-fontawesome :icon="['fas', 'lock']" />
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control">
+              <button @click="signUp" class="button is-success">
+                Sign Up
+              </button>
+            </p>
+          </div>
+          <span
+            >or go back to <router-link to="/login">login</router-link>.</span
+          >
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
- <script>
-  import firebase from 'firebase';
-  export default {
-    name: 'signUp',
-    data() {
-      return {
-        email: '',
-        password: ''
-      }
-    },
-    methods: {
-      signUp: function() {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+<script>
+import firebase from "firebase";
+export default {
+  name: "signUp",
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    signUp: function() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(
           () => {
-            this.$router.replace('home')
+            this.$router.replace("home");
           },
-          (err) => {
-            alert('Oops. ' + err.message)
+          err => {
+            alert("Oops. " + err.message);
           }
         );
-      }
     }
   }
+};
 </script>
 
- <style scoped>
-  .sign-up {
-    margin-top: 40px;
-  }
-  input {
-    margin: 10px 0;
-    width: 20%;
-    padding: 15px;
-  }
-  button {
-    margin-top: 10px;
-    width: 10%;
-    cursor: pointer;
-  }
-  span {
-    display: block;
-    margin-top: 20px;
-    font-size: 11px;
-  }
-</style>
+<style scoped></style>

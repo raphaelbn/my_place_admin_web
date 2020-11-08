@@ -5,26 +5,30 @@
         <div class="container" @keyup.enter.prevent="login">
           <div class="field">
             <p class="control has-icons-left has-icons-right">
-              <input class="input" v-model="email" type="email" placeholder="Email" />
+              <input
+                class="input"
+                v-model="email"
+                type="email"
+                placeholder="Email"
+              />
               <span class="icon is-small is-left">
-                <vue-fontawesome
-                  :icon="['far', 'envelope']"
-                />
+                <vue-fontawesome :icon="['far', 'envelope']" />
               </span>
               <span class="icon is-small is-right">
-                <vue-fontawesome
-                  :icon="['fas', 'check']"
-                />
+                <vue-fontawesome :icon="['fas', 'check']" />
               </span>
             </p>
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <input class="input" v-model="password" type="password" placeholder="Password" />
+              <input
+                class="input"
+                v-model="password"
+                type="password"
+                placeholder="Password"
+              />
               <span class="icon is-small is-left">
-                <vue-fontawesome
-                  :icon="['fas', 'lock']"
-                />
+                <vue-fontawesome :icon="['fas', 'lock']" />
               </span>
             </p>
           </div>
@@ -35,7 +39,10 @@
               </button>
             </p>
           </div>
-          <p>You don't have an account ? You can <router-link to="/sign-up">create one</router-link></p>
+          <p>
+            You don't have an account ? You can
+            <router-link to="/sign-up">create one</router-link>
+          </p>
         </div>
       </div>
     </div>
@@ -50,7 +57,7 @@ export default {
   data() {
     return {
       email: "",
-      password: "",
+      password: ""
     };
   },
   methods: {
@@ -60,16 +67,15 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then(
           () => {
-            this.$router.replace("home");
+            this.$router.replace("category");
           },
-          (err) => {
+          err => {
             alert("Oops. " + err.message);
           }
         );
-    },
-  },
+    }
+  }
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
